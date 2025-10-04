@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { MapPin, Briefcase } from "lucide-react"
+import { ExperienceSection } from "../components/experience-section"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>("home")
@@ -84,6 +85,11 @@ export default function PortfolioPage() {
         </div>
         <a
           href="#contact"
+          onClick={(e) => {
+            e.preventDefault()
+            const el = document.getElementById("contact")
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+          }}
           className="px-6 py-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-background transition-all duration-300 rounded-md inline-flex items-center justify-center"
           aria-label="Scroll to contact section"
         >
@@ -123,7 +129,7 @@ export default function PortfolioPage() {
               enjoy exploring design, reading, and the occasional deep-dive into new tools.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 md:gap-4 text-text-main/80">
+            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 <span className="text-sm md:text-base">Based in Your City</span>
@@ -137,22 +143,26 @@ export default function PortfolioPage() {
 
           {/* Right: tombstone-shaped image */}
           <div className="flex justify-center md:justify-end">
-            <div className="tombstone w-[320px] h-[440px] md:w-[360px] md:h-[480px] lg:w-[400px] lg:h-[520px] shadow-md">
+            <div className="tombstone shadow-md">
               <img
                 src="/images/about-portrait.webp"
                 alt="Portrait placeholder"
-                className="block h-full w-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Keep remaining placeholder sections for now */}
-      <section id="experience" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
-        <h2 className="text-4xl font-serif italic font-semibold">Experience Section (Coming Soon)</h2>
+      {/* Experience Section */}
+      <section id="experience" className="scroll-mt-20 py-16 md:py-24 px-8">
+        <div className="mx-auto w-full max-w-3xl">
+          <h2 className="font-serif italic font-semibold text-2xl md:text-3xl mb-6 md:mb-8">Experience</h2>
+        </div>
+        <ExperienceSection />
       </section>
 
+      {/* Keep remaining placeholder sections for now */}
       <section id="certifications" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
         <h2 className="text-4xl font-serif italic font-semibold">Certifications & Projects Section (Coming Soon)</h2>
       </section>
@@ -183,28 +193,24 @@ export default function PortfolioPage() {
           width: 100%;
         }
 
-        /* Tombstone shape using clip-path with polygon fallback and path() primary */
+        /* Tombstone: half-circle top + rectangular bottom using CSS masks.
+           Works in modern browsers; border is omitted for a cleaner look. */
         .tombstone {
+          width: 320px;
+          height: 440px;
           overflow: hidden;
-          /* Fallback: simple polygon that gates the top area to create a 'tombstone-like' silhouette */
-          clip-path: polygon(0% 25%, 0% 100%, 100% 100%, 100% 25%, 50% 25%, 50% 0, 100% 0, 100% 25%, 0 25%, 0 0, 50% 0);
+          -webkit-mask:
+            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
+            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
+          mask:
+            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
+            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
         }
-        /* Prefer smoother curve using path() matching the element's size at each breakpoint */
-        /* Base: 320x440 */
-        @supports (clip-path: path('M0 0H1V1H0Z')) {
-          .tombstone {
-            clip-path: path('M 0 110 C 0 110, 0 0, 160 0 S 320 0, 320 110 V 440 H 0 Z');
-          }
-          @media (min-width: 768px) {
-            .tombstone {
-              clip-path: path('M 0 120 C 0 120, 0 0, 180 0 S 360 0, 360 120 V 480 H 0 Z');
-            }
-          }
-          @media (min-width: 1024px) {
-            .tombstone {
-              clip-path: path('M 0 130 C 0 130, 0 0, 200 0 S 400 0, 400 130 V 520 H 0 Z');
-            }
-          }
+        @media (min-width: 768px) {
+          .tombstone { width: 360px; height: 480px; }
+        }
+        @media (min-width: 1024px) {
+          .tombstone { width: 400px; height: 520px; }
         }
       `}</style>
     </div>

@@ -128,6 +128,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-text-main;
+    @apply text-text-main;
+    background: url("/textures/canvas-texture.webp") repeat, var(--background);
+    transition: background-color 0.8s ease, color 0.8s ease;
   }
 }
