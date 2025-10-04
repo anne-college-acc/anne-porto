@@ -137,11 +137,11 @@ export default function PortfolioPage() {
 
           {/* Right: tombstone-shaped image */}
           <div className="flex justify-center md:justify-end">
-            <div className="tombstone shadow-md">
+            <div className="tombstone w-[320px] h-[440px] md:w-[360px] md:h-[480px] lg:w-[400px] lg:h-[520px] shadow-md">
               <img
                 src="/images/about-portrait.webp"
                 alt="Portrait placeholder"
-                className="h-full w-full object-cover"
+                className="block h-full w-full object-cover"
               />
             </div>
           </div>
@@ -183,24 +183,28 @@ export default function PortfolioPage() {
           width: 100%;
         }
 
-        /* Tombstone: half-circle top + rectangular bottom using CSS masks.
-           Works in modern browsers; border is omitted for a cleaner look. */
+        /* Tombstone shape using clip-path with polygon fallback and path() primary */
         .tombstone {
-          width: 320px;
-          height: 440px;
           overflow: hidden;
-          -webkit-mask:
-            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
-            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
-          mask:
-            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
-            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
+          /* Fallback: simple polygon that gates the top area to create a 'tombstone-like' silhouette */
+          clip-path: polygon(0% 25%, 0% 100%, 100% 100%, 100% 25%, 50% 25%, 50% 0, 100% 0, 100% 25%, 0 25%, 0 0, 50% 0);
         }
-        @media (min-width: 768px) {
-          .tombstone { width: 360px; height: 480px; }
-        }
-        @media (min-width: 1024px) {
-          .tombstone { width: 400px; height: 520px; }
+        /* Prefer smoother curve using path() matching the element's size at each breakpoint */
+        /* Base: 320x440 */
+        @supports (clip-path: path('M0 0H1V1H0Z')) {
+          .tombstone {
+            clip-path: path('M 0 110 C 0 110, 0 0, 160 0 S 320 0, 320 110 V 440 H 0 Z');
+          }
+          @media (min-width: 768px) {
+            .tombstone {
+              clip-path: path('M 0 120 C 0 120, 0 0, 180 0 S 360 0, 360 120 V 480 H 0 Z');
+            }
+          }
+          @media (min-width: 1024px) {
+            .tombstone {
+              clip-path: path('M 0 130 C 0 130, 0 0, 200 0 S 400 0, 400 130 V 520 H 0 Z');
+            }
+          }
         }
       `}</style>
     </div>
