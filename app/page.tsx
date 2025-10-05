@@ -193,27 +193,39 @@ export default function PortfolioPage() {
           width: 100%;
         }
 
-        /* Tombstone: half-circle top + rectangular bottom using CSS clip-path.
-           Works in modern browsers; border is omitted for a cleaner look. */
+        /* Tombstone: rectangle frame with semi-circular top.
+           We compute the top corner radii from the element width so it always forms a semicircle. */
         .tombstone {
-          width: 320px;
-          height: 440px;
+          --tomb-w: 320px;      /* base width */
+          width: var(--tomb-w);
+          height: 440px;        /* base height */
           overflow: hidden;
-          clip-path: path('M 0 110 C 0 110, 0 0, 160 0 S 320 0, 320 110 V 440 H 0 Z');
+
+          /* top corners: horizontal and vertical radii are half the width => semicircle */
+          border-top-left-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
+          border-top-right-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
         }
         @media (min-width: 768px) {
           .tombstone {
-            width: 360px;
+            --tomb-w: 360px;
             height: 480px;
-            clip-path: path('M 0 120 C 0 120, 0 0, 180 0 S 360 0, 360 120 V 480 H 0 Z');
           }
         }
         @media (min-width: 1024px) {
           .tombstone {
-            width: 400px;
+            --tomb-w: 400px;
             height: 520px;
-            clip-path: path('M 0 130 C 0 130, 0 0, 200 0 S 400 0, 400 130 V 520 H 0 Z');
           }
+        }
+
+        /* Ensure the image fully fills the frame without baseline gaps */
+        .tombstone :global(img) {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       `}</style>
     </div>
