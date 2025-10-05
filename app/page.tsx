@@ -193,24 +193,27 @@ export default function PortfolioPage() {
           width: 100%;
         }
 
-        /* Tombstone: half-circle top + rectangular bottom using CSS masks.
+        /* Tombstone: half-circle top + rectangular bottom using CSS clip-path.
            Works in modern browsers; border is omitted for a cleaner look. */
         .tombstone {
           width: 320px;
           height: 440px;
           overflow: hidden;
-          -webkit-mask:
-            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
-            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
-          mask:
-            radial-gradient(closest-side at 50% 0, #000 99.5%, transparent 100%) top / 100% 50% no-repeat,
-            linear-gradient(#000, #000) bottom / 100% 50% no-repeat;
+          clip-path: path('M 0 110 C 0 110, 0 0, 160 0 S 320 0, 320 110 V 440 H 0 Z');
         }
         @media (min-width: 768px) {
-          .tombstone { width: 360px; height: 480px; }
+          .tombstone {
+            width: 360px;
+            height: 480px;
+            clip-path: path('M 0 120 C 0 120, 0 0, 180 0 S 360 0, 360 120 V 480 H 0 Z');
+          }
         }
         @media (min-width: 1024px) {
-          .tombstone { width: 400px; height: 520px; }
+          .tombstone {
+            width: 400px;
+            height: 520px;
+            clip-path: path('M 0 130 C 0 130, 0 0, 200 0 S 400 0, 400 130 V 520 H 0 Z');
+          }
         }
       `}</style>
     </div>
