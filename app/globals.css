@@ -138,7 +138,7 @@ body[data-active-theme="experience"] {
   }
   body {
     @apply text-text-main;
-    background: url("/textures/canvas-texture.png") repeat, var(--background);
+    background: url("/textures/canvas-texture.webp") repeat, var(--background);
     transition: background-color 0.8s ease, color 0.8s ease;
   }
 }
