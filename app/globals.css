@@ -9,6 +9,10 @@
   --text-main: #282828;
   --accent: #eb81af;
 
+  /* Experience theme variables */
+  --background-experience: #414d59;
+  --text-main-experience: #ffffff;
+
   /* Original design tokens preserved */
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -75,6 +79,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+}
+
+body[data-active-theme="experience"] {
+  --background: var(--background-experience);
+  --text-main: var(--text-main-experience);
 }
 
 @theme inline {
