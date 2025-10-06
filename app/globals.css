@@ -10,7 +10,7 @@
   --accent: #eb81af;
 
   /* Experience theme variables */
-  --background-experience: #414d59;
+  --background-experience: #3c4952;
   --text-main-experience: #ffffff;
 
   /* Original design tokens preserved */
@@ -140,7 +140,7 @@ body[data-active-theme="experience"] {
     @apply text-text-main;
     position: relative; /* establish stacking context for ::before */
     z-index: 0;
-    background: url("/textures/canvas-texture.webp") repeat, var(--background);
+    background: url("/textures/canvas-texture.png") repeat, var(--background);
     transition: background-color 0.8s ease, color 0.8s ease;
   }
 
@@ -161,6 +161,6 @@ body[data-active-theme="experience"] {
 }
 
 body[data-active-theme="experience"]::before {
-  background-image: url("/textures/denim-texture.webp");
+  background-image: url("/textures/denim-texture.png");
   opacity: 1; /* fade the denim texture in */
 }
