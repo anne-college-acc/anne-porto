@@ -81,11 +81,6 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-body[data-active-theme="experience"] {
-  --background: var(--background-experience);
-  --text-main: var(--text-main-experience);
-}
-
 @theme inline {
   /* Font family configuration for portfolio fonts */
   --font-sans: var(--font-poppins);
@@ -141,6 +136,7 @@ body[data-active-theme="experience"] {
     position: relative; /* establish stacking context for ::before */
     z-index: 0;
     background: url("/textures/canvas-texture.png") repeat, var(--background);
+    background: url("/textures/canvas-texture.webp") repeat, var(--background);
     transition: background-color 0.8s ease, color 0.8s ease;
   }
 

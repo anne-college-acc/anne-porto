@@ -27,15 +27,6 @@ export default function PortfolioPage() {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id)
           }
-
-          const theme = (entry.target as HTMLElement).dataset.theme
-          if (entry.isIntersecting && theme) {
-            document.body.setAttribute("data-active-theme", theme)
-          } else if (theme) {
-            if (document.body.getAttribute("data-active-theme") === theme) {
-              document.body.removeAttribute("data-active-theme")
-            }
-          }
         })
       },
       { root: null, threshold: 0.6 },
@@ -164,7 +155,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" data-theme="experience" className="scroll-mt-20 py-16 md:py-24 px-8">
+      <section id="experience" className="scroll-mt-20 py-16 md:py-24 px-8">
         <div className="mx-auto w-full max-w-3xl">
           <h2 className="font-serif italic font-semibold text-2xl md:text-3xl mb-6 md:mb-8">Experience</h2>
         </div>
