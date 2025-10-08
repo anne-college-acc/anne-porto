@@ -60,7 +60,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.title}
         </h3>
 
-        <div className="mt-1 flex items-baseline justify-between gap-3">
+        <div className="mt-1 flex flex-col gap-1">
           <p className="text-sm text-text-main/70">{project.description}</p>
           <span className="text-xs text-text-main/60">{project.year}</span>
         </div>
