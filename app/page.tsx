@@ -184,34 +184,34 @@ export default function PortfolioPage() {
           </p>
 
           {/* Social links */}
-          <div className="mt-2 flex flex-col items-center gap-3 w-full max-w-sm">
+          <div className="mt-8 flex flex-row items-center justify-center gap-x-4">
             <a
               href="mailto:youremail@example.com"
-              aria-label="Gmail"
-              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+              aria-label="Email"
+              title="Email"
+              className="p-3 rounded-md text-text-main/80 hover:text-accent transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              <Mail className="h-5 w-5" aria-hidden="true" />
-              <span className="font-sans text-base">Gmail</span>
+              <Mail className="h-8 w-8" aria-hidden="true" />
             </a>
             <a
               href="https://www.linkedin.com/in/your-handle"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+              title="LinkedIn"
+              className="p-3 rounded-md text-text-main/80 hover:text-accent transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              <Linkedin className="h-5 w-5" aria-hidden="true" />
-              <span className="font-sans text-base">LinkedIn</span>
+              <Linkedin className="h-8 w-8" aria-hidden="true" />
             </a>
             <a
               href="https://instagram.com/your-handle"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+              title="Instagram"
+              className="p-3 rounded-md text-text-main/80 hover:text-accent transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              <Instagram className="h-5 w-5" aria-hidden="true" />
-              <span className="font-sans text-base">Instagram</span>
+              <Instagram className="h-8 w-8" aria-hidden="true" />
             </a>
           </div>
         </div>
