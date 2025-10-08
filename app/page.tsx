@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MapPin, Briefcase } from "lucide-react"
+import { MapPin, Briefcase, Mail, Linkedin, Instagram } from "lucide-react"
 import { ExperienceSection } from "../components/experience-section"
 import { ProjectsSection } from "../components/projects-section"
 
@@ -55,7 +55,7 @@ export default function PortfolioPage() {
   }, [])
 
   return (
-    <div className="font-sans">
+    <div className="font-sans overflow-x-hidden">
       {/* Sticky Navbar */}
       <nav className="sticky top-0 z-50 bg-transparent flex justify-between items-center px-8 h-20">
         <div className="flex items-center gap-8 font-serif italic">
@@ -100,7 +100,7 @@ export default function PortfolioPage() {
 
       {/* Home / Landing Section */}
       <section id="home" className="min-h-[calc(100svh-80px)] flex flex-col items-center justify-center px-8">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-bold text-center mb-4 text-text-main whitespace-nowrap">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-bold text-center mb-4 text-text-main text-balance">
           <span className={`inline-block transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}>
             {greetings[greetingIndex]}
           </span>{" "}
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Placeholder Sections */}
-      <section id="about" className="scroll-mt-20 px-12 md:px-20 py-16">
+      <section id="about" className="scroll-mt-20 px-12 md:px-20 py-16 overflow-x-hidden">
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Left: header + description + micro-lines */}
           <div>
@@ -164,14 +164,57 @@ export default function PortfolioPage() {
       </section>
 
       {/* Keep remaining placeholder sections for now */}
-      <section id="certifications" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
+      <section
+        id="certifications"
+        className="min-h-screen scroll-mt-20 flex items-center justify-center px-8 overflow-x-hidden"
+      >
         <div className="w-full">
           <ProjectsSection />
         </div>
       </section>
 
       <section id="contact" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
-        <h2 className="text-4xl font-serif italic font-semibold">Contact Section (Coming Soon)</h2>
+        {/* Implement minimalist and elegant contact section */}
+        <div className="w-full max-w-2xl flex flex-col items-center text-center gap-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic text-balance">
+            {"Let's create something together."}
+          </h2>
+          <p className="text-base md:text-lg text-text-main/80 font-sans text-pretty">
+            Feel free to reach out for collaborations or just a friendly hello!
+          </p>
+
+          {/* Social links */}
+          <div className="mt-2 flex flex-col items-center gap-3 w-full max-w-sm">
+            <a
+              href="mailto:youremail@example.com"
+              aria-label="Gmail"
+              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+            >
+              <Mail className="h-5 w-5" aria-hidden="true" />
+              <span className="font-sans text-base">Gmail</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/your-handle"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+            >
+              <Linkedin className="h-5 w-5" aria-hidden="true" />
+              <span className="font-sans text-base">LinkedIn</span>
+            </a>
+            <a
+              href="https://instagram.com/your-handle"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="inline-flex items-center gap-2 text-text-main/80 hover:text-accent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 rounded"
+            >
+              <Instagram className="h-5 w-5" aria-hidden="true" />
+              <span className="font-sans text-base">Instagram</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       <style jsx>{`
