@@ -132,4 +132,12 @@
     background: url("/textures/canvas-texture.webp") repeat, var(--background);
     transition: background-color 0.8s ease, color 0.8s ease;
   }
+  /* add custom text selection highlight */
+  ::selection {
+    background-color: hsla(340, 30%, 55%, 0.2);
+  }
+  /* Firefox */
+  ::-moz-selection {
+    background-color: hsla(340, 30%, 55%, 0.2);
+  }
 }

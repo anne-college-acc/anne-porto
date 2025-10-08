@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { MapPin, Briefcase } from "lucide-react"
 import { ExperienceSection } from "../components/experience-section"
+import { ProjectsSection } from "../components/projects-section"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>("home")
@@ -164,7 +165,9 @@ export default function PortfolioPage() {
 
       {/* Keep remaining placeholder sections for now */}
       <section id="certifications" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
-        <h2 className="text-4xl font-serif italic font-semibold">Certifications & Projects Section (Coming Soon)</h2>
+        <div className="w-full">
+          <ProjectsSection />
+        </div>
       </section>
 
       <section id="contact" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
