@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MapPin, Briefcase, Mail, Linkedin, Instagram } from "lucide-react"
+import { MapPin, Briefcase, Mail, Linkedin, Instagram, Menu, X } from "lucide-react"
 import { ExperienceSection } from "../components/experience-section"
 import { ProjectsSection } from "../components/projects-section"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>("home")
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const greetings = [
     "Hi, my name is",
@@ -58,7 +59,8 @@ export default function PortfolioPage() {
     <div className="font-sans">
       {/* Sticky Navbar */}
       <nav className="sticky top-0 z-50 bg-transparent flex justify-between items-center px-8 h-20">
-        <div className="flex items-center gap-8 font-serif italic">
+        {/* Hide desktop links on mobile */}
+        <div className="hidden md:flex items-center gap-8 font-serif italic">
           <a
             href="#home"
             className={`nav-link text-text-main font-semibold ${activeSection === "home" ? "active" : ""}`}
@@ -84,19 +86,105 @@ export default function PortfolioPage() {
             Certifications & Projects
           </a>
         </div>
-        <a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault()
-            const el = document.getElementById("contact")
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
-          }}
-          className="px-6 py-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-background transition-all duration-300 rounded-md inline-flex items-center justify-center"
-          aria-label="Scroll to contact section"
-        >
-          Contact me
-        </a>
+
+        {/* Hide desktop "Contact me" on mobile, add hamburger on mobile */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault()
+              const el = document.getElementById("contact")
+              if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+            }}
+            className="hidden md:inline-flex px-6 py-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-background transition-all duration-300 rounded-md items-center justify-center"
+            aria-label="Scroll to contact section"
+          >
+            Contact me
+          </a>
+
+          <button
+            type="button"
+            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-transform duration-200 hover:-translate-y-0.5"
+            aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((v) => !v)}
+          >
+            <Menu className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile full-screen menu overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-background">
+          <button
+            type="button"
+            className="absolute right-4 top-4 inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-colors"
+            aria-label="Close menu"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <X className="h-7 w-7" aria-hidden="true" />
+          </button>
+
+          <div className="h-full w-full flex flex-col items-center justify-center gap-y-8">
+            <a
+              href="#home"
+              className="text-2xl font-serif italic text-text-main hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("home")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                setIsMenuOpen(false)
+              }}
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              className="text-2xl font-serif italic text-text-main hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("about")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                setIsMenuOpen(false)
+              }}
+            >
+              About
+            </a>
+            <a
+              href="#experience"
+              className="text-2xl font-serif italic text-text-main hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("experience")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                setIsMenuOpen(false)
+              }}
+            >
+              Experience
+            </a>
+            <a
+              href="#certifications"
+              className="text-2xl font-serif italic text-text-main hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("certifications")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                setIsMenuOpen(false)
+              }}
+            >
+              Certifications & Projects
+            </a>
+            <a
+              href="#contact"
+              className="text-2xl font-serif italic text-text-main hover:text-accent transition-colors"
+              onClick={(e) => {
+                e.preventDefault()
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                setIsMenuOpen(false)
+              }}
+            >
+              Contact me
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Home / Landing Section */}
       <section id="home" className="min-h-[calc(100svh-80px)] flex flex-col items-center justify-center px-8">
@@ -107,7 +195,7 @@ export default function PortfolioPage() {
           <span className="text-accent">Anne Trulyta</span>!
         </h1>
         <p className="text-lg md:text-xl text-center max-w-2xl text-text-main">
-          I am a passionate developer creating elegant and intuitive digital experiences.
+          International Business Management undergraduate fluent in four languages. Passionate about global growth, eager to help ideas grow internationally!
         </p>
         <a
           href="#about"
@@ -119,37 +207,33 @@ export default function PortfolioPage() {
 
       {/* Placeholder Sections */}
       <section id="about" className="scroll-mt-20 px-12 md:px-20 py-16 overflow-x-hidden">
-        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left: header + description + micro-lines */}
-          <div>
-            <h2 className="font-serif italic font-semibold text-2xl md:text-3xl text-text-main">About Me</h2>
-            <p className="mt-4 text-base md:text-lg text-text-main/90 text-justify">
-              I’m a developer focused on crafting elegant, accessible, and thoughtfully engineered interfaces. My work
-              balances aesthetics and performance, aiming for experiences that feel intuitive and delightful. I value
-              maintainable systems, clear communication, and continuous learning with each project. Outside of code, I
-              enjoy exploring design, reading, and the occasional deep-dive into new tools.
-            </p>
+      
+        <div className="mx-auto max-w-5xl"> 
+          <h2 className="font-serif italic font-semibold text-2xl md:text-3xl text-text-main mb-8">About Me</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            {/* Left: description + micro-lines (heading removed from here) */}
+            <div className="order-last md:order-first">
+              <p className="mt-4 text-base md:text-lg text-text-main/90 text-justify">
+                I’m an International Business Management undergraduate fluent in Indonesian, English, Mandarin, and Korean. I enjoy learning how people and culture shape the way businesses grow and operate globally. My strength lies in understanding individuals, recognizing their talents and aligning them with what they do best. I aim to help organizations build strong, people-driven strategies for international expansion.
+              </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                <span className="text-sm md:text-base">Based in Your City</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4" aria-hidden="true" />
-                <span className="text-sm md:text-base">Currently at Your Company / University</span>
+              <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" aria-hidden="true" />
+                  <span className="text-sm md:text-base">Based in Tangerang</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Briefcase className="h-4 w-4" aria-hidden="true" />
+                  <span className="text-sm md:text-base">Currently Studying at BINUS University</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right: tombstone-shaped image */}
-          <div className="flex justify-center md:justify-end">
-            <div className="tombstone shadow-md">
-              <img
-                src="/images/about-portrait.webp"
-                alt="Portrait placeholder"
-                className="h-full w-full object-cover"
-              />
+            {/* Right: tombstone-shaped image */}
+            <div className="flex justify-center md:justify-end order-first md:order-last">
+              <div className="tombstone shadow-md rounded-full w-48 h-48 mx-auto mb-8 md:rounded-none md:w-auto md:h-auto md:mx-0 md:mb-0 overflow-hidden">
+                <img src="/images/anne-about.jpg" alt="Portrait placeholder" className="h-full w-full object-cover" />
+              </div>
             </div>
           </div>
         </div>
@@ -239,24 +323,19 @@ export default function PortfolioPage() {
           width: 100%;
         }
 
-        /* Tombstone: rectangle frame with semi-circular top.
-           We compute the top corner radii from the element width so it always forms a semicircle. */
-        .tombstone {
-          --tomb-w: 320px;      /* base width */
-          width: var(--tomb-w);
-          height: 440px;        /* base height */
-          overflow: hidden;
-
-          /* top corners: horizontal and vertical radii are half the width => semicircle */
-          border-top-left-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
-          border-top-right-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        }
+        /* Apply tombstone shape only on desktop so mobile circle (rounded-full) isn't overridden */
         @media (min-width: 768px) {
           .tombstone {
-            --tomb-w: 360px;
-            height: 480px;
+            --tomb-w: 360px;      /* base width for md */
+            width: var(--tomb-w);
+            height: 480px;        /* base height for md */
+            overflow: hidden;
+
+            /* top corners: horizontal and vertical radii are half the width => semicircle */
+            border-top-left-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
+            border-top-right-radius: calc(var(--tomb-w) / 2) calc(var(--tomb-w) / 2);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
           }
         }
         @media (min-width: 1024px) {
