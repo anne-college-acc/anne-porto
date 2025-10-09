@@ -129,7 +129,7 @@
   }
   body {
     @apply text-text-main;
-    background: url("/textures/canvas-texture.webp") repeat, var(--background);
+    background: url("/textures/canvas-texture.png") repeat, var(--background);
     transition: background-color 0.8s ease, color 0.8s ease;
   }
   /* add custom text selection highlight */
@@ -152,7 +152,5 @@
     width: 0;
     height: 0;
   }
-  body {
-    overflow-x: hidden; /* avoid any accidental horizontal overflow */
-  }
+  /* removed body overflow-x: hidden to restore sticky positioning */
 }

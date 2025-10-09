@@ -55,7 +55,7 @@ export default function PortfolioPage() {
   }, [])
 
   return (
-    <div className="font-sans overflow-x-hidden">
+    <div className="font-sans">
       {/* Sticky Navbar */}
       <nav className="sticky top-0 z-50 bg-transparent flex justify-between items-center px-8 h-20">
         <div className="flex items-center gap-8 font-serif italic">
