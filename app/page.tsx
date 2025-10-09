@@ -205,35 +205,35 @@ export default function PortfolioPage() {
         </a>
       </section>
 
-      {/* Placeholder Sections */}
+      {/* About Section */}
       <section id="about" className="scroll-mt-20 px-12 md:px-20 py-16 overflow-x-hidden">
-      
-        <div className="mx-auto max-w-5xl"> 
-          <h2 className="font-serif italic font-semibold text-2xl md:text-3xl text-text-main mb-8">About Me</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* Left: description + micro-lines (heading removed from here) */}
-            <div className="order-last md:order-first">
-              <p className="mt-4 text-base md:text-lg text-text-main/90 text-justify">
-                I’m an International Business Management undergraduate fluent in Indonesian, English, Mandarin, and Korean. I enjoy learning how people and culture shape the way businesses grow and operate globally. My strength lies in understanding individuals, recognizing their talents and aligning them with what they do best. I aim to help organizations build strong, people-driven strategies for international expansion.
-              </p>
-
-              <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" aria-hidden="true" />
-                  <span className="text-sm md:text-base">Based in Tangerang</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Briefcase className="h-4 w-4" aria-hidden="true" />
-                  <span className="text-sm md:text-base">Currently Studying at BINUS University</span>
-                </div>
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Left Column: Header, Description, and Info */}
+          <div>
+            <h2 className="font-serif italic font-semibold text-2xl md:text-3xl text-text-main">About Me</h2>
+            <p className="mt-4 text-base md:text-lg text-text-main/90 text-justify">
+              I’m an International Business Management undergraduate fluent in Indonesian, English, Mandarin, and Korean. I enjoy learning how people and culture shape the way businesses grow and operate globally. My strength lies in understanding individuals, recognizing their talents and aligning them with what they do best. I aim to help organizations build strong, people-driven strategies for international expansion.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                <span className="text-sm md:text-base">Based in Tangerang</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Briefcase className="h-4 w-4" aria-hidden="true" />
+                <span className="text-sm md:text-base">Currently Studying at BINUS University</span>
               </div>
             </div>
+          </div>
 
-            {/* Right: tombstone-shaped image */}
-            <div className="flex justify-center md:justify-end order-first md:order-last">
-              <div className="tombstone shadow-md rounded-full w-48 h-48 mx-auto mb-8 md:rounded-none md:w-auto md:h-auto md:mx-0 md:mb-0 overflow-hidden">
-                <img src="/images/anne-about.jpg" alt="Portrait placeholder" className="h-full w-full object-cover" />
-              </div>
+          {/* Right Column: Image - Hidden on mobile, visible on desktop */}
+          <div className="hidden md:flex justify-center md:justify-end">
+            <div className="tombstone shadow-md">
+              <img
+                src="/images/anne-about.jpg"
+                alt="Portrait of Anne"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function PortfolioPage() {
         <ExperienceSection />
       </section>
 
-      {/* Keep remaining placeholder sections for now */}
+      {/* Certifications & Projects Section */}
       <section
         id="certifications"
         className="min-h-screen scroll-mt-20 flex items-center justify-center px-8 overflow-x-hidden"
@@ -257,8 +257,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      {/* Contact Section */}
       <section id="contact" className="min-h-screen scroll-mt-20 flex items-center justify-center px-8">
-        {/* Implement minimalist and elegant contact section */}
         <div className="w-full max-w-2xl flex flex-col items-center text-center gap-6">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic text-balance">
             {"Let's create something together."}
@@ -266,11 +266,9 @@ export default function PortfolioPage() {
           <p className="text-base md:text-lg text-text-main/80 font-sans text-pretty">
             Feel free to reach out for collaborations or just a friendly hello!
           </p>
-
-          {/* Social links */}
           <div className="mt-8 flex flex-row items-center justify-center gap-x-4">
             <a
-              href="mailto:youremail@example.com"
+              href="mailto:anne.susanto@binus.ac.id"
               aria-label="Email"
               title="Email"
               className="p-3 rounded-md text-text-main/80 hover:text-accent transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
@@ -278,7 +276,7 @@ export default function PortfolioPage() {
               <Mail className="h-8 w-8" aria-hidden="true" />
             </a>
             <a
-              href="https://www.linkedin.com/in/your-handle"
+              href="https://www.linkedin.com/in/annetrulyta/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -288,7 +286,7 @@ export default function PortfolioPage() {
               <Linkedin className="h-8 w-8" aria-hidden="true" />
             </a>
             <a
-              href="https://instagram.com/your-handle"
+              href="https://instagram.com/anne_trulyta"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

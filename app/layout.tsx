@@ -19,9 +19,8 @@ const castoro = Castoro({
 })
 
 export const metadata: Metadata = {
-  title: "Anne Trulyta | Portfolio",
+  title: "Anne Trulyta",
   description: "Portfolio website of Anne Trulyta",
-  generator: "v0.app",
 }
 
 export default function RootLayout({
