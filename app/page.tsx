@@ -216,10 +216,12 @@ export default function PortfolioPage() {
             href={CV_PATH}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-12 px-6 py-2.5 rounded-md border border-text-main/20 bg-transparent text-text-main font-medium text-base hover:border-accent hover:text-accent hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group"
+            className="mt-12 px-6 py-2.5 rounded-md border border-text-main/20 bg-transparent text-text-main font-medium text-base hover:border-accent hover:text-accent hover:shadow-sm transition-all duration-300 flex items-center gap-2 group"
           >
-            <Download className="h-4 w-4 group-hover:block hidden" />
-            <FileText className="h-4 w-4 group-hover:hidden block" />
+            <div className="relative w-4 h-4">
+              <FileText className="absolute inset-0 h-4 w-4 transition-all duration-300 opacity-100 scale-100 rotate-0 group-hover:opacity-0 group-hover:scale-75 group-hover:rotate-12" />
+              <Download className="absolute inset-0 h-4 w-4 transition-all duration-300 opacity-0 scale-75 -rotate-12 group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0" />
+            </div>
             <span>Download my CV</span>
           </a>
         </div>
