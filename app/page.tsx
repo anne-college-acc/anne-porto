@@ -25,12 +25,18 @@ export default function PortfolioPage() {
   const [shouldBounce, setShouldBounce] = useState(false)
 
   useEffect(() => {
-    // Tease the scroll attraction by bouncing once after 5 seconds
-    const timer = setTimeout(() => {
-      setShouldBounce(true)
-    }, 5000)
+    // Tease the scroll attraction by bouncing once after 3 seconds whenever returning to home
+    let timer: NodeJS.Timeout
+    if (activeSection === "home") {
+      setShouldBounce(false) // Reset to allow re-trigger
+      timer = setTimeout(() => {
+        setShouldBounce(true)
+      }, 3000)
+    } else {
+      setShouldBounce(false)
+    }
     return () => clearTimeout(timer)
-  }, [])
+  }, [activeSection])
 
   useEffect(() => {
     const handleScroll = () => {
