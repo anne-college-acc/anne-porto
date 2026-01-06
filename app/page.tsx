@@ -66,6 +66,17 @@ export default function PortfolioPage() {
   }, [])
 
   useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMenuOpen])
+
+  useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null
     const intervalId = setInterval(() => {
       setIsFading(true)
