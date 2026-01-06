@@ -116,7 +116,7 @@ export default function PortfolioPage() {
 
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-transform duration-200 hover:-translate-y-0.5"
+            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-colors duration-300"
             aria-label="Open menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((v) => !v)}
@@ -128,7 +128,7 @@ export default function PortfolioPage() {
 
       {/* Mobile full-screen menu overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background">
+        <div className="fixed inset-0 z-[55] bg-background">
           <button
             type="button"
             className="absolute right-4 top-4 inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-colors"
