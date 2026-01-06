@@ -1,9 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MapPin, Briefcase, Mail, Linkedin, Instagram, Menu, X } from "lucide-react"
+import { MapPin, Briefcase, Mail, Linkedin, Instagram, Menu, X, Download, FileText } from "lucide-react"
 import { ExperienceSection } from "../components/experience-section"
 import { ProjectsSection } from "../components/projects-section"
+
+// Placeholder path for the CV file
+const CV_PATH = "/cv.pdf"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>("home")
@@ -197,9 +200,21 @@ export default function PortfolioPage() {
         <p className="text-lg md:text-xl text-center max-w-2xl text-text-main">
           International Business Management undergraduate fluent in four languages. Passionate about global growth, eager to help ideas grow internationally!
         </p>
+
+        <a
+          href={CV_PATH}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-12 px-6 py-2.5 rounded-md border border-text-main/20 bg-transparent text-text-main font-medium text-base hover:border-accent hover:text-accent hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group"
+        >
+          <Download className="h-4 w-4 group-hover:block hidden" />
+          <FileText className="h-4 w-4 group-hover:hidden block" />
+          <span>Download my CV</span>
+        </a>
+
         <a
           href="#about"
-          className="mt-28 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition"
+          className="mt-12 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition"
         >
           Scroll to learn more!
         </a>
