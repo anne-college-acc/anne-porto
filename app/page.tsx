@@ -14,10 +14,10 @@ export default function PortfolioPage() {
 
   const greetings = [
     "Hi, my name is",
+    "你好，我的名字是",
     "Halo, nama saya",
     "안녕하세요, 제 이름은",
     "Hallo, mein Name ist",
-    "你好，我的名字是",
   ]
   const [greetingIndex, setGreetingIndex] = useState(0)
   const [isFading, setIsFading] = useState(false)
@@ -108,7 +108,7 @@ export default function PortfolioPage() {
               const el = document.getElementById("contact")
               if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
             }}
-            className="hidden md:inline-flex px-6 py-2 border border-accent text-accent bg-transparent hover:bg-accent hover:text-background transition-all duration-300 rounded-md items-center justify-center"
+            className="hidden md:inline-flex px-4 pt-1.5 pb-0.5 mt-1 rounded-full border border-accent/40 text-accent bg-transparent hover:border-accent hover:bg-accent hover:text-background transition-all duration-300 items-center justify-center font-serif italic text-base"
             aria-label="Scroll to contact section"
           >
             Contact me
