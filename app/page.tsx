@@ -21,6 +21,15 @@ export default function PortfolioPage() {
   ]
   const [greetingIndex, setGreetingIndex] = useState(0)
   const [isFading, setIsFading] = useState(false)
+  const [shouldBounce, setShouldBounce] = useState(false)
+
+  useEffect(() => {
+    // Tease the scroll attraction by bouncing once after 5 seconds
+    const timer = setTimeout(() => {
+      setShouldBounce(true)
+    }, 5000)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const sectionIds = ["home", "about", "experience", "certifications", "contact"]
@@ -190,31 +199,36 @@ export default function PortfolioPage() {
       )}
 
       {/* Home / Landing Section */}
-      <section id="home" className="min-h-[calc(100svh-80px)] flex flex-col items-center justify-center px-8">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-bold text-center mb-4 text-text-main text-balance">
-          <span className={`inline-block transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}>
-            {greetings[greetingIndex]}
-          </span>{" "}
-          <span className="text-accent">Anne Trulyta</span>!
-        </h1>
-        <p className="text-lg md:text-xl text-center max-w-2xl text-text-main">
-          International Business Management undergraduate fluent in four languages. Passionate about global growth, eager to help ideas grow internationally!
-        </p>
+      <section id="home" className="min-h-[calc(100svh-80px)] flex flex-col items-center px-8 relative">
+        {/* Main Content Wrapper - Takes up available space and centers content */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-4xl">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-bold text-center mb-4 text-text-main text-balance">
+            <span className={`inline-block transition-opacity duration-500 ${isFading ? "opacity-0" : "opacity-100"}`}>
+              {greetings[greetingIndex]}
+            </span>{" "}
+            <span className="text-accent">Anne Trulyta</span>!
+          </h1>
+          <p className="text-lg md:text-xl text-center max-w-2xl text-text-main">
+            International Business Management undergraduate fluent in four languages. Passionate about global growth, eager to help ideas grow internationally!
+          </p>
 
-        <a
-          href={CV_PATH}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-12 px-6 py-2.5 rounded-md border border-text-main/20 bg-transparent text-text-main font-medium text-base hover:border-accent hover:text-accent hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group"
-        >
-          <Download className="h-4 w-4 group-hover:block hidden" />
-          <FileText className="h-4 w-4 group-hover:hidden block" />
-          <span>Download my CV</span>
-        </a>
+          <a
+            href={CV_PATH}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-12 px-6 py-2.5 rounded-md border border-text-main/20 bg-transparent text-text-main font-medium text-base hover:border-accent hover:text-accent hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group"
+          >
+            <Download className="h-4 w-4 group-hover:block hidden" />
+            <FileText className="h-4 w-4 group-hover:hidden block" />
+            <span>Download my CV</span>
+          </a>
+        </div>
 
+        {/* Scroll Link - Pushed to bottom */}
         <a
           href="#about"
-          className="mt-12 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition"
+          className={`pb-12 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition ${shouldBounce ? "animate-gentle-jump" : ""}`}
+          aria-label="Scroll down"
         >
           Scroll to learn more!
         </a>
