@@ -214,7 +214,7 @@ export default function PortfolioPage() {
             <p className="mt-4 text-base md:text-lg text-text-main/90 text-justify">
               I’m an International Business Management undergraduate fluent in Indonesian, English, Mandarin, and Korean. I enjoy learning how people and culture shape the way businesses grow and operate globally. My strength lies in understanding individuals, recognizing their talents and aligning them with what they do best. I aim to help organizations build strong, people-driven strategies for international expansion.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-2 md:gap-3 text-text-main/80">
+            <div className="mt-6 flex flex-col items-start gap-2 md:gap-3 text-text-main/80">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 <span className="text-sm md:text-base">Based in Tangerang</span>
