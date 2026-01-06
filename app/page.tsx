@@ -5,8 +5,8 @@ import { MapPin, Briefcase, Mail, Linkedin, Instagram, Menu, X, Download, FileTe
 import { ExperienceSection } from "../components/experience-section"
 import { ProjectsSection } from "../components/projects-section"
 
-// Placeholder path for the CV file
-const CV_PATH = "/cv.pdf"
+// Path for the CV file
+const CV_PATH = "/docs/Anne_Trulyta_CV.pdf"
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState<string>("home")
@@ -21,6 +21,7 @@ export default function PortfolioPage() {
   ]
   const [greetingIndex, setGreetingIndex] = useState(0)
   const [isFading, setIsFading] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const [shouldBounce, setShouldBounce] = useState(false)
 
   useEffect(() => {
@@ -29,6 +30,14 @@ export default function PortfolioPage() {
       setShouldBounce(true)
     }, 5000)
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   useEffect(() => {
@@ -70,7 +79,18 @@ export default function PortfolioPage() {
   return (
     <div className="font-sans">
       {/* Sticky Navbar */}
-      <nav className="sticky top-0 z-50 bg-transparent flex justify-between items-center px-8 h-20">
+      <nav
+        className={`sticky top-0 z-50 flex justify-between items-center px-8 transition-all duration-300 ease-in-out ${isScrolled ? "h-16" : "h-20"
+          }`}
+      >
+        {/* Gradient Blur Background (Desktop) */}
+        <div
+          className={`absolute inset-0 -z-10 hidden md:block transition-opacity duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
+            }`}
+        >
+          <div className="absolute inset-0 bg-background/20 backdrop-blur-sm [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]" />
+        </div>
+
         {/* Hide desktop links on mobile */}
         <div className="hidden md:flex items-center gap-8 font-serif italic">
           <a
@@ -116,12 +136,20 @@ export default function PortfolioPage() {
 
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-text-main hover:text-accent transition-colors duration-300"
+            className={`md:hidden relative overflow-hidden inline-flex items-center justify-center rounded-lg p-2 text-text-main hover:text-accent transition-all duration-300`}
             aria-label="Open menu"
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((v) => !v)}
           >
-            <Menu className="h-6 w-6" aria-hidden="true" />
+            {/* Gradient Blur Background (Mobile Button) */}
+            <div
+              className={`absolute inset-0 z-0 transition-opacity duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
+                }`}
+            >
+              <div className="absolute inset-0 bg-background/20 backdrop-blur-sm [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]" />
+            </div>
+
+            <Menu className="h-6 w-6 relative z-10" aria-hidden="true" />
           </button>
         </div>
       </nav>
@@ -229,7 +257,8 @@ export default function PortfolioPage() {
         {/* Scroll Link - Pushed to bottom */}
         <a
           href="#about"
-          className={`pb-12 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition ${shouldBounce ? "animate-gentle-jump" : ""}`}
+          className={`pb-12 text-sm text-text-main/70 hover:text-text-main underline-offset-4 hover:underline transition-all duration-700 ${shouldBounce ? "animate-gentle-jump" : ""
+            } ${activeSection === "home" ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           aria-label="Scroll down"
         >
           Scroll to learn more!
